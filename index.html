@@ -1,46 +1,110 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F3EE90CXYS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titulaciones online | Proyecto académico UCAV</title>
 
-  gtag('config', 'G-F3EE90CXYS');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analítica Digital - Sitio de prueba</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3EE90CXYS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F3EE90CXYS');
+  </script>
 </head>
 
 <body>
+  <header>
+    <h1>Titulaciones online</h1>
+    <p>Proyecto académico de analítica digital</p>
+    <p>Información sobre formación universitaria online.</p>
+  </header>
 
-    <header>
-        <h1>Analítica Digital</h1>
-        <p>Sitio web de prueba para la implementación de Google Analytics 4.</p>
-    </header>
+  <main>
+    <section>
+      <h2>Encuentra tu titulación</h2>
+      <p>
+        Consulta la información de una titulación y solicita más
+        información si quieres conocer mejor sus características.
+      </p>
+    </section>
 
-    <main>
-        <h2>Bienvenido</h2>
+    <section id="titulacion">
+      <h2>Grado en Educación Primaria</h2>
+      <p>
+        Ejemplo académico de una página de titulación universitaria.
+        Esta web no es la página oficial de admisiones de la UCAV.
+      </p>
+      <button id="consultar-titulacion" type="button">
+        Consultar titulación
+      </button>
+    </section>
 
-        <p>
-            Esta página forma parte de un ejercicio académico sobre
-            analítica digital y medición web.
-        </p>
+    <section id="solicitud">
+      <h2>Solicita información</h2>
+      <p>
+        Formulario de prueba. No introduzcas datos personales reales.
+      </p>
 
-        <p>
-            El objetivo es comprobar la instalación y funcionamiento
-            de Google Analytics 4 en un sitio web real.
-        </p>
+      <form id="formulario">
+        <label for="nombre">Nombre de prueba</label>
+        <input id="nombre" name="nombre" type="text" required>
 
-        <button>Más información</button>
-    </main>
+        <label for="email">Correo de prueba</label>
+        <input id="email" name="email" type="email" required>
 
-    <footer>
-        <p>Proyecto académico · 2026</p>
-    </footer>
+        <button type="submit">Enviar solicitud de prueba</button>
+      </form>
 
+      <p id="confirmacion" role="status" hidden>
+        Solicitud de prueba enviada correctamente.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto académico · 2026</p>
+  </footer>
+
+  <script>
+    // Evento 1: consulta de una titulación
+    document.getElementById('consultar-titulacion')
+      .addEventListener('click', function () {
+        gtag('event', 'view_degree', {
+          degree_name: 'Grado en Educación Primaria'
+        });
+
+        document.getElementById('solicitud')
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+
+    // Evento 2: primera interacción con el formulario
+    let formularioIniciado = false;
+
+    document.getElementById('formulario')
+      .addEventListener('focusin', function () {
+        if (!formularioIniciado) {
+          formularioIniciado = true;
+          gtag('event', 'form_start');
+        }
+      });
+
+    // Evento 3: envío válido del formulario de prueba
+    document.getElementById('formulario')
+      .addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        gtag('event', 'lead_submit', {
+          form_name: 'solicitud_informacion_prueba'
+        });
+
+        document.getElementById('confirmacion').hidden = false;
+        this.reset();
+        formularioIniciado = false;
+      });
+  </script>
 </body>
 </html>
