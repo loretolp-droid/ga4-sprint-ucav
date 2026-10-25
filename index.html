@@ -12,9 +12,10 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  gtag('config', 'G-F3EE90CXYS', {
-  debug_mode: true
-});
+
+    gtag('config', 'G-F3EE90CXYS', {
+      debug_mode: true
+    });
   </script>
 </head>
 
@@ -72,11 +73,15 @@
   </footer>
 
   <script>
-    // Evento 1: consulta de una titulación
+    // Evento 1: clic para consultar una titulación
     document.getElementById('consultar-titulacion')
       .addEventListener('click', function () {
-        gtag('event', 'view_degree', {
-          degree_name: 'Grado en Educación Primaria'
+        gtag('event', 'view_item', {
+          degree_name: 'Grado en Educación Primaria',
+          items: [{
+            item_id: 'grado_educacion_primaria',
+            item_name: 'Grado en Educación Primaria'
+          }]
         });
 
         document.getElementById('solicitud')
@@ -99,7 +104,7 @@
       .addEventListener('submit', function (event) {
         event.preventDefault();
 
-        gtag('event', 'lead_submit', {
+        gtag('event', 'generate_lead', {
           form_name: 'solicitud_informacion_prueba'
         });
 
